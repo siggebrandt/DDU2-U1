@@ -33,6 +33,7 @@ if (cityWasFound == false) {
     tabName.innerHTML = "Not Found"
 }
 
+// Skriva ut alla cityBoxes
 for (let i = 0; i <= cities.length - 1; i++) {
     let cityBoxP = document.createElement("p");
     cityBoxP.classList.add("cityBox");
@@ -44,13 +45,22 @@ for (let i = 0; i <= cities.length - 1; i++) {
     }
 }
 
+/** Grid */
+distanceTable.style.gridTemplateRows = "repeat(40, 1fr);"
+for (i = 0; i < 40; i++) {
+    for (j = 0; j < 40; j++) {
+        let cell = document.createElement("div");
+        cell.textContent = i;
+        distanceTable.appendChild(cell);
+    }
+}
+
+
 
 // pseudokod
 
 /* 
-- nästa steg är att skriva ut alla city boxes, dom ska ha klassen ".cityBox". 
-- target, closest & furthest ska allså få separata klasser med respektive klassnamn. Dessa ska också ha extra text. (inga markeringar if citywasfound false)
-- Använd en loop som går igenom hela cities objektet, ock skriver ut alla namnen i id baserad ordning.
+- closest & furthest ska allså få separata klasser med respektive klassnamn. Dessa ska också ha extra text. (inga markeringar if citywasfound false)
 - 2 funktioner för att se den närmsta och längst bort liggande staden
 - 
 - Skapa distance table, grid (39x fr), classer = "cell", "head_row", "head_column", "even_row", "even_col" 
