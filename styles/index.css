@@ -18,22 +18,39 @@ body {
 }
 
 #cities .cityBox {
+  /* Denna används aldrig i OG HTML filen */
   padding: 3px 6px;
   background-color: lightgrey;
   border-radius: 5px;
 }
 
-#cities .target, #cities .closest, #cities .furthest { color: white }
-#cities .target { background-color: black; }
-#cities .closest { background-color: green;}
-#cities .furthest { background-color: blue; }
+/* Dessa används aldrig i OG HTML filen */
+#cities .target,
+#cities .closest,
+#cities .furthest {
+  color: white
+}
+
+#cities .target {
+  background-color: black;
+}
+
+#cities .closest {
+  background-color: green;
+}
+
+#cities .furthest {
+  background-color: blue;
+}
 
 h1 {
   text-align: center;
   margin: 20px 0;
 }
 
-h2, h3, p {
+h2,
+h3,
+p {
   text-align: center;
 }
 
@@ -64,6 +81,7 @@ main {
 }
 
 #table {
+  /* #table är empty i HTML */
   --fsz: .8rem;
   margin-top: 20px;
   display: grid;
@@ -71,6 +89,7 @@ main {
 }
 
 #table .cell {
+  /* #table är empty i HTML */
   padding: 1px 0 2px 0;
   font-size: var(--fsz);
   border-right: 1px solid black;
@@ -78,7 +97,9 @@ main {
   text-align: center;
 }
 
-#table .head_row, #table .head_column {
+#table .head_row,
+#table .head_column {
+  /* #table är empty i HTML */
   font-size: var(--fsz);
   font-weight: bold;
 }
@@ -88,6 +109,10 @@ main {
   /* background-color: #eee; */
 }
 
+/* #table är empty i HTML */
+
 #table .even_col {
   background-color: #ddd;
 }
+
+/* #table är empty i HTML */
