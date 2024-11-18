@@ -1,5 +1,8 @@
 // Recommended: All functions declared here
 
+
+
+
 // Funktion för att kolla om entered city finns
 // funktion som kollar vilken stad som är närmast
 // funktion som kollar vilken stad som är längst bort
@@ -81,12 +84,23 @@ for (i = 0; i <= 39; i++) {
         let cell = document.createElement("div");
         cell.classList.add("cell");
 
-        cell.textContent = increasedNumber;
+        //cell.textContent = increasedNumber;
         increasedNumber++;
 
         if (i == 0) {
             cell.classList.add("head_row");
             cell.textContent = j - 1;
+        }
+
+        if (i >= 1 && j >= 1) {
+            for (key in distances) {
+                if (distances[key].city1 == j - 1 && distances[key].city2 == i - 1) {
+                    cell.textContent = distances[key].distance / 10;
+                }
+                if (distances[key].city2 == j - 1 && distances[key].city1 == i - 1) {
+                    cell.textContent = distances[key].distance / 10;
+                }
+            }
         }
         if (i == j) {
             cell.textContent = "";
