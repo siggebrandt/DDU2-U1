@@ -4,6 +4,36 @@
 // funktion som kollar vilken stad som är närmast
 // funktion som kollar vilken stad som är längst bort
 
+function ghghg666(oooo, ghppppk) {
+    let i = oooo * ghppppk;
+    return i;
+}
+
+console.log(ghghg666(5, 9));
+/*
+function cityInDatabase(isCityInDatabase) {
+    let cityWasFound = false;
+    for (let i = 0; i <= cities.length; i++) {
+        if (isCityInDatabase == cities[i].name) {
+            cityWasFound = true;
+            return true;
+        }
+    }
+    if (cityWasFound == false) {
+        return false;
+    }
+}
+if (cityInDatabase(enteredCity) == true) {
+    cityTitle.innerHTML += `${enteredCity} (${cities[cityKey].country})`;
+    tabName.innerHTML = enteredCity;
+}
+else if (cityInDatabase(enteredCity) == false) {
+    cityTitle.innerHTML += enteredCity + " finns inte i databasen";
+    cityDetails.innerHTML = "";
+    tabName.innerHTML = "Not Found"
+}*/
+
+
 // Recommended: constants with references to existing HTML-elements
 const cityTitle = document.querySelector("h2");
 const cityDetails = document.querySelector("h3");
@@ -18,6 +48,9 @@ const enteredCity = prompt("Vilken stad?");
 
 // Skriver ut citynamned som användaren skriver i prompt
 let cityWasFound = false;
+
+
+
 
 for (cityKey in cities) {
     if (enteredCity == cities[cityKey].name) {
@@ -44,13 +77,40 @@ for (let i = 0; i <= cities.length - 1; i++) {
         cityBoxP.classList.add("target");
     }
 }
-
+let ghghgh = 0;
 /** Grid */
 distanceTable.style.gridTemplateRows = "repeat(40, 1fr);"
-for (i = 0; i < 40; i++) {
-    for (j = 0; j < 40; j++) {
+let i; let j;
+for (i = 0; i <= 39; i++) {
+    /* Gör inte såhär, använd en ifsats så om man kollar distance och distance är samma som målet så blir strängen tom.
+    let emptyCell = document.createElement("div");
+    emptyCell.classList.add("cell");
+    distanceTable.appendChild(emptyCell);
+    */
+
+    for (j = 0; j <= 39; j++) {
         let cell = document.createElement("div");
-        cell.textContent = i;
+        cell.classList.add("cell");
+
+        cell.textContent = ghghgh;
+        ghghgh++;
+
+        if (i == 0) {
+            cell.classList.add("head_row");
+            cell.textContent = j - 1;
+        }
+        if (i == 0 && j == 0) {
+            cell.textContent = "";
+        }
+        if (j == 0) {
+            cell.classList.add("head_column");
+        }
+        if (j % 2 == 0) {
+            cell.classList.add("even_col");
+        }
+        if (i % 2 == 0) {
+            cell.classList.add("even_row");
+        }
         distanceTable.appendChild(cell);
     }
 }
