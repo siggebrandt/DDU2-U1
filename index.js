@@ -4,39 +4,39 @@
 // funktion som kollar vilken stad som är närmast
 // funktion som kollar vilken stad som är längst bort
 
-function ghghg666(oooo, ghppppk) {
-    let i = oooo * ghppppk;
+function ghghg666(one, two) {
+    let i = one * two;
     return i;
 }
 
 console.log(ghghg666(5, 9));
 /*
 function cityInDatabase(isCityInDatabase) {
-    let cityWasFound = false;
+    let cityInDatabase = false;
     for (let i = 0; i <= cities.length; i++) {
         if (isCityInDatabase == cities[i].name) {
-            cityWasFound = true;
+            cityInDatabase = true;
             return true;
         }
     }
-    if (cityWasFound == false) {
+    if (cityInDatabase == false) {
         return false;
     }
 }
-if (cityInDatabase(enteredCity) == true) {
-    cityTitle.innerHTML += `${enteredCity} (${cities[cityKey].country})`;
-    tabName.innerHTML = enteredCity;
+if (cityInDatabase(promptedCity) == true) {
+    h2.innerHTML += `${promptedCity} (${cities[cityKey].country})`;
+    tabName.innerHTML = promptedCity;
 }
-else if (cityInDatabase(enteredCity) == false) {
-    cityTitle.innerHTML += enteredCity + " finns inte i databasen";
-    cityDetails.innerHTML = "";
+else if (cityInDatabase(promptedCity) == false) {
+    h2.innerHTML += promptedCity + " finns inte i databasen";
+    h3.innerHTML = "";
     tabName.innerHTML = "Not Found"
 }*/
 
 
 // Recommended: constants with references to existing HTML-elements
-const cityTitle = document.querySelector("h2");
-const cityDetails = document.querySelector("h3");
+const h2 = document.querySelector("h2");
+const h3 = document.querySelector("h3");
 const closestCity = document.querySelector("#closest");
 const furthestCity = document.querySelector("#furthest");
 const cityBox = document.querySelector("#cities");
@@ -44,72 +44,64 @@ const distanceTable = document.querySelector("#table");
 const tabName = document.head.querySelector("title");
 
 // Recommended: Ask for the city name and then the rest of the code
-const enteredCity = prompt("Vilken stad?");
+const promptedCity = prompt("Vilken stad?");
 
-// Skriver ut citynamned som användaren skriver i prompt
-let cityWasFound = false;
-
-
-
-
-for (cityKey in cities) {
-    if (enteredCity == cities[cityKey].name) {
-        cityWasFound = true;
-        cityTitle.innerHTML += `${enteredCity} (${cities[cityKey].country})`;
-        tabName.innerHTML = enteredCity;
+let cityInDatabase = false;
+for (let cityKey in cities) {
+    if (promptedCity == cities[cityKey].name) {
+        cityInDatabase = true;
+        h2.innerHTML = `${promptedCity} (${cities[cityKey].country})`;
+        tabName.innerHTML = promptedCity;
         break; // loopen slutar och behöver inte fortsätta
     }
 } // om staden inte finns i databasen så skrivs det ut och h3 blir tömd
-if (cityWasFound == false) {
-    cityTitle.innerHTML += enteredCity + " finns inte i databasen";
-    cityDetails.innerHTML = "";
+if (cityInDatabase == false) {
+    h2.innerHTML = `${promptedCity} finns inte i databasen`;
+    h3.innerHTML = "";
     tabName.innerHTML = "Not Found"
 }
 
-// Skriva ut alla cityBoxes
+// CityBoxes
 for (let i = 0; i <= cities.length - 1; i++) {
-    let cityBoxP = document.createElement("p");
-    cityBoxP.classList.add("cityBox");
-    cityBoxP.textContent = cities[i].name;
-    cityBox.appendChild(cityBoxP);
+    let cityBoxDiv = document.createElement("div");
+    cityBoxDiv.classList.add("cityBox");
+    cityBoxDiv.textContent = cities[i].name;
+    cityBox.appendChild(cityBoxDiv);
 
-    if (enteredCity == cities[i].name) {
-        cityBoxP.classList.add("target");
+    if (promptedCity == cities[i].name) {
+        cityBoxDiv.classList.add("target");
     }
 }
-let ghghgh = 0;
+let increasedNumber = 0;
 /** Grid */
 distanceTable.style.gridTemplateRows = "repeat(40, 1fr);"
-let i; let j;
+//let i; let j;
 for (i = 0; i <= 39; i++) {
-    /* Gör inte såhär, använd en ifsats så om man kollar distance och distance är samma som målet så blir strängen tom.
-    let emptyCell = document.createElement("div");
-    emptyCell.classList.add("cell");
-    distanceTable.appendChild(emptyCell);
-    */
-
     for (j = 0; j <= 39; j++) {
         let cell = document.createElement("div");
         cell.classList.add("cell");
 
-        cell.textContent = ghghgh;
-        ghghgh++;
+        cell.textContent = increasedNumber;
+        increasedNumber++;
 
         if (i == 0) {
             cell.classList.add("head_row");
             cell.textContent = j - 1;
         }
-        if (i == 0 && j == 0) {
+        if (i == j) {
             cell.textContent = "";
         }
         if (j == 0) {
             cell.classList.add("head_column");
         }
-        if (j % 2 == 0) {
+        if (j % 2 == 1) {
             cell.classList.add("even_col");
         }
-        if (i % 2 == 0) {
+        if (i % 2 == 1) {
             cell.classList.add("even_row");
+        }
+        if (j == 0 && i >= 1) {
+            cell.textContent = cities[i - 1].id + " - " + cities[i - 1].name;
         }
         distanceTable.appendChild(cell);
     }
@@ -120,7 +112,7 @@ for (i = 0; i <= 39; i++) {
 // pseudokod
 
 /* 
-- closest & furthest ska allså få separata klasser med respektive klassnamn. Dessa ska också ha extra text. (inga markeringar if citywasfound false)
+- closest & furthest ska allså få separata klasser med respektive klassnamn. Dessa ska också ha extra text. (inga markeringar if cityInDatabase false)
 - 2 funktioner för att se den närmsta och längst bort liggande staden
 - 
 - Skapa distance table, grid (39x fr), classer = "cell", "head_row", "head_column", "even_row", "even_col" 
