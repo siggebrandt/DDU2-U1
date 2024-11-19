@@ -1,18 +1,37 @@
 // Recommended: All functions declared here
+function NameToId(name) {
+    let index = null;
+    for (let key in cities) {
+        if (name == cities[key].name) {
+            index = cities[key].id;
+            break;
+        }
+    }
+    return index;
+}
 
+function FurthestCity(city) {
+    let furtherCount = 0;
+    let furtherArray = [];
+    for (let i = 0; i < distances.length; i++) {
+        if (NameToId(city) == distances[i].city2) {
+            furtherArray.push({
+                distance: distances[++furtherCount].distance, // det är här det blir fel, index värdet är ej rätt
+                cityId: distances[furtherCount].city1
+            });
+        }
+    }
+    console.log(furtherArray);
+}
 
+function ClosestCity(city) {
 
+}
 
 // Funktion för att kolla om entered city finns
 // funktion som kollar vilken stad som är närmast
 // funktion som kollar vilken stad som är längst bort
 
-function ghghg666(one, two) {
-    let i = one * two;
-    return i;
-}
-
-console.log(ghghg666(5, 9));
 /*
 function cityInDatabase(isCityInDatabase) {
     let cityInDatabase = false;
@@ -48,6 +67,7 @@ const tabName = document.head.querySelector("title");
 
 // Recommended: Ask for the city name and then the rest of the code
 const promptedCity = prompt("Vilken stad?");
+FurthestCity(promptedCity);
 
 let cityInDatabase = false;
 for (let cityKey in cities) {
@@ -75,17 +95,12 @@ for (let i = 0; i <= cities.length - 1; i++) {
         cityBoxDiv.classList.add("target");
     }
 }
-let increasedNumber = 0;
 /** Grid */
 distanceTable.style.gridTemplateRows = "repeat(40, 1fr);"
-//let i; let j;
 for (i = 0; i <= 39; i++) {
     for (j = 0; j <= 39; j++) {
         let cell = document.createElement("div");
         cell.classList.add("cell");
-
-        //cell.textContent = increasedNumber;
-        increasedNumber++;
 
         if (i == 0) {
             cell.classList.add("head_row");
@@ -128,6 +143,4 @@ for (i = 0; i <= 39; i++) {
 /* 
 - closest & furthest ska allså få separata klasser med respektive klassnamn. Dessa ska också ha extra text. (inga markeringar if cityInDatabase false)
 - 2 funktioner för att se den närmsta och längst bort liggande staden
-- 
-- Skapa distance table, grid (39x fr), classer = "cell", "head_row", "head_column", "even_row", "even_col" 
 */
