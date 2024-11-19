@@ -16,17 +16,15 @@ function FurthestCity(city) {
     for (let i = 0; i < distances.length; i++) {
         if (NameToId(city) == distances[i].city2) {
             furtherArray.push({
-                distance: distances[++furtherCount].distance, // det är här det blir fel, index värdet är ej rätt
+                distance: distances[++furtherCount].distance, // det är här det blir fel, index värdet är ej rätt för att ta fram rätt array
                 cityId: distances[furtherCount].city1
             });
         }
     }
-    console.log(furtherArray);
+    //console.log(furtherArray);
 }
 
-function ClosestCity(city) {
-
-}
+function ClosestCity(city) { }
 
 // Funktion för att kolla om entered city finns
 // funktion som kollar vilken stad som är närmast
@@ -75,16 +73,15 @@ for (let cityKey in cities) {
         cityInDatabase = true;
         h2.innerHTML = `${promptedCity} (${cities[cityKey].country})`;
         tabName.innerHTML = promptedCity;
-        break; // loopen slutar och behöver inte fortsätta
+        break;
     }
-} // om staden inte finns i databasen så skrivs det ut och h3 blir tömd
+}
 if (cityInDatabase == false) {
     h2.innerHTML = `${promptedCity} finns inte i databasen`;
     h3.innerHTML = "";
-    tabName.innerHTML = "Not Found"
+    tabName.innerHTML = "Not Found";
 }
 
-// CityBoxes
 for (let i = 0; i <= cities.length - 1; i++) {
     let cityBoxDiv = document.createElement("div");
     cityBoxDiv.classList.add("cityBox");
@@ -95,47 +92,72 @@ for (let i = 0; i <= cities.length - 1; i++) {
         cityBoxDiv.classList.add("target");
     }
 }
-/** Grid */
+
+let array = [];
+let cityCount = 38;
+
 distanceTable.style.gridTemplateRows = "repeat(40, 1fr);"
-for (i = 0; i <= 39; i++) {
-    for (j = 0; j <= 39; j++) {
+for (let row = 0; row <= 39; row++) {
+    for (let col = 0; col <= 39; col++) {
         let cell = document.createElement("div");
         cell.classList.add("cell");
 
-        if (i == 0) {
+        if (row == 0) {
             cell.classList.add("head_row");
-            cell.textContent = j - 1;
+            cell.textContent = col - 1;
         }
 
-        if (i >= 1 && j >= 1) {
+        if (row >= 1 && col >= 1) {
             for (key in distances) {
-                if (distances[key].city1 == j - 1 && distances[key].city2 == i - 1) {
+                if (distances[key].city1 == col - 1 && distances[key].city2 == row - 1) {
                     cell.textContent = distances[key].distance / 10;
+
+                    if (distances[key].city1 == NameToId(promptedCity)) {
+                        //array.push(cell.textContent); //{ city: distances[key].city1, distance: cell.textContent }
+                        array.push({
+                            city: NameToId(promptedCity),
+                            distance: cell.textContent
+                        });
+                    }
                 }
-                if (distances[key].city2 == j - 1 && distances[key].city1 == i - 1) {
+                /*
+                push({
+                distance: distances[++furtherCount].distance, // det är här det blir fel, index värdet är ej rätt för att ta fram rätt array
+                cityId: distances[furtherCount].city1
+                
+                */
+
+                if (distances[key].city2 == col - 1 && distances[key].city1 == row - 1) {
                     cell.textContent = distances[key].distance / 10;
+                    if (distances[key].city2 == NameToId(promptedCity)) {
+                        array.push({
+                            city: NameToId(promptedCity),
+                            distance: cell.textContent
+                        });
+                    }
                 }
+
             }
         }
-        if (i == j) {
+        if (row == col) {
             cell.textContent = "";
         }
-        if (j == 0) {
+        if (col == 0) {
             cell.classList.add("head_column");
         }
-        if (j % 2 == 1) {
+        if (col % 2 == 1) {
             cell.classList.add("even_col");
         }
-        if (i % 2 == 1) {
+        if (row % 2 == 1) {
             cell.classList.add("even_row");
         }
-        if (j == 0 && i >= 1) {
-            cell.textContent = cities[i - 1].id + " - " + cities[i - 1].name;
+        if (col == 0 && row >= 1) {
+            cell.textContent = `${cities[row - 1].id} - ${cities[row - 1].name}`;
         }
         distanceTable.appendChild(cell);
     }
 }
-
+console.log(array);
 
 
 // pseudokod
