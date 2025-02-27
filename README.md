@@ -11,5 +11,5 @@ Syftet med detta projekt är att använda JavaScript, HTML och CSS för att impl
 Det färdiga projektet finns tillgängligt på ett flertal olika källor,
 
 - [GitHub Repository](https://github.com/siggebrandt/DDU2-U1)
-- [Webbplats (MAU WebShare)](https://webshare.mah.se/aq2697/U1-DDU2)
 - [Webbplats (GitHub Pages)](https://siggebrandt.github.io/DDU2-U1)
+- [Webbplats (MAU WebShare)](https://webshare.mah.se/aq2697/ddu2/u1)
